@@ -24,7 +24,7 @@ export const syncUser = async () => {
 				name: `${user.firstName || ''} ${user.lastName || ''}`,
 				username: user.username ?? user.emailAddresses[0].emailAddress.split('@')[0],
 				email: user.emailAddresses[0].emailAddress,
-				Image: user.imageUrl,
+				image: user.imageUrl,
 			},
 		});
 
