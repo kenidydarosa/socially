@@ -1,8 +1,8 @@
-"use server";
+'use server';
 
-import prisma from "@/lib/prisma";
-import { auth, currentUser } from "@clerk/nextjs/server";
-import { revalidatePath } from "next/cache";
+import prisma from '@/lib/prisma';
+import { auth, currentUser } from '@clerk/nextjs/server';
+import { revalidatePath } from 'next/cache';
 
 export async function syncUser() {
   try {
@@ -22,8 +22,8 @@ export async function syncUser() {
     const dbUser = await prisma.user.create({
       data: {
         clerkId: userId,
-        name: `${user.firstName || ""} ${user.lastName || ""}`,
-        username: user.username ?? user.emailAddresses[0].emailAddress.split("@")[0],
+        name: `${user.firstName || ''} ${user.lastName || ''}`,
+        username: user.username ?? user.emailAddresses[0].emailAddress.split('@')[0],
         email: user.emailAddresses[0].emailAddress,
         image: user.imageUrl,
       },
@@ -31,7 +31,7 @@ export async function syncUser() {
 
     return dbUser;
   } catch (error) {
-    console.log("Error in syncUser", error);
+    console.log('Error in syncUser', error);
   }
 }
 
@@ -58,7 +58,7 @@ export async function getDbUserId() {
 
   const user = await getUserByClerkId(clerkId);
 
-  if (!user) throw new Error("User not found");
+  if (!user) throw new Error('User not found');
 
   return user.id;
 }
@@ -101,7 +101,7 @@ export async function getRandomUsers() {
 
     return randomUsers;
   } catch (error) {
-    console.log("Error fetching random users", error);
+    console.log('Error fetching random users', error);
     return [];
   }
 }
@@ -112,7 +112,7 @@ export async function toggleFollow(targetUserId: string) {
 
     if (!userId) return;
 
-    if (userId === targetUserId) throw new Error("You cannot follow yourself");
+    if (userId === targetUserId) throw new Error('You cannot follow yourself');
 
     const existingFollow = await prisma.follows.findUnique({
       where: {
@@ -145,7 +145,7 @@ export async function toggleFollow(targetUserId: string) {
 
         prisma.notification.create({
           data: {
-            type: "FOLLOW",
+            type: 'FOLLOW',
             userId: targetUserId, // user being followed
             creatorId: userId, // user following
           },
@@ -153,10 +153,10 @@ export async function toggleFollow(targetUserId: string) {
       ]);
     }
 
-    revalidatePath("/");
+    revalidatePath('/');
     return { success: true };
   } catch (error) {
-    console.log("Error in toggleFollow", error);
-    return { success: false, error: "Error toggling follow" };
+    console.log('Error in toggleFollow', error);
+    return { success: false, error: 'Error toggling follow' };
   }
 }
