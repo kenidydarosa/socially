@@ -8,7 +8,7 @@ import { Card, CardContent } from './ui/card';
 import Link from 'next/link';
 import { Avatar, AvatarImage } from './ui/avatar';
 import { formatDistanceToNow } from 'date-fns';
-// import { DeleteAlertDialog } from './DeleteAlertDialog';
+import { DeleteAlertDialog } from './DeleteAlertDialog';
 import { Button } from './ui/button';
 import { HeartIcon, LogInIcon, MessageCircleIcon, SendIcon } from 'lucide-react';
 import { Textarea } from './ui/textarea';
@@ -49,7 +49,7 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
       setIsCommenting(true);
       const result = await createComment(post.id, newComment);
       if (result?.success) {
-        toast.success('Comment posted successfully');
+        toast.success('Comentário publicado com sucesso!');
         setNewComment('');
       }
     } catch (error) {
@@ -64,7 +64,7 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
     try {
       setIsDeleting(true);
       const result = await deletePost(post.id);
-      if (result.success) toast.success('Post deleted successfully');
+      if (result.success) toast.success('Post apagado com sucesso!');
       else throw new Error(result.error);
     } catch (error) {
       toast.error('Failed to delete post');
@@ -103,13 +103,13 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
                   </div>
                 </div>
                 {/* Check if current user is the post author */}
-                {/* {dbUserId === post.author.id && (
+                {dbUserId === post.author.id && (
                   <DeleteAlertDialog
                     isDeleting={isDeleting}
                     onDelete={handleDeletePost}
                   />
                 )}
-                */}
+               
               </div>
               <p className='mt-2 text-sm text-foreground break-words'>{post.content}</p>
             </div>
