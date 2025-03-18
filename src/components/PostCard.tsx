@@ -8,11 +8,11 @@ import { Card, CardContent } from './ui/card';
 import Link from 'next/link';
 import { Avatar, AvatarImage } from './ui/avatar';
 import { formatDistanceToNow } from 'date-fns';
+// import { eo } from 'date-fns/locale';
 import { DeleteAlertDialog } from './DeleteAlertDialog';
 import { Button } from './ui/button';
 import { HeartIcon, LogInIcon, MessageCircleIcon, SendIcon } from 'lucide-react';
 import { Textarea } from './ui/textarea';
-
 type Posts = Awaited<ReturnType<typeof getPosts>>;
 type Post = Posts[number];
 
@@ -200,7 +200,7 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
                   </Avatar>
                   <div className='flex-1'>
                     <Textarea
-                      placeholder='Write a comment...'
+                      placeholder='Escreva um comentário...'
                       value={newComment}
                       onChange={(e) => setNewComment(e.target.value)}
                       className='min-h-[80px] resize-none'
@@ -213,11 +213,11 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
                         disabled={!newComment.trim() || isCommenting}
                       >
                         {isCommenting ? (
-                          'Posting...'
+                          'Publicando...'
                         ) : (
                           <>
                             <SendIcon className='size-4' />
-                            Comment
+                            Comentar
                           </>
                         )}
                       </Button>
@@ -229,7 +229,7 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
                   <SignInButton mode='modal'>
                     <Button variant='outline' className='gap-2'>
                       <LogInIcon className='size-4' />
-                      Sign in to comment
+                      Faça login para comentar
                     </Button>
                   </SignInButton>
                 </div>
