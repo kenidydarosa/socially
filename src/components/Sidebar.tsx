@@ -46,12 +46,12 @@ export const SiderBar = async () => {
               <div className="flex justify-between">
                 <div>
                   <p className="font-medium">{user._count.following}</p>
-                  <p className="text-xs text-muted-foreground">Following</p>
+                  <p className="text-xs text-muted-foreground">Seguindo</p>
                 </div>
                 <Separator orientation="vertical" />
                 <div>
                   <p className="font-medium">{user._count.followers}</p>
-                  <p className="text-xs text-muted-foreground">Followers</p>
+                  <p className="text-xs text-muted-foreground">Seguidores</p>
                 </div>
               </div>
               <Separator className="my-4" />
@@ -60,7 +60,7 @@ export const SiderBar = async () => {
             <div className="w-full space-y-2 text-sm">
               <div className="flex items-center text-muted-foreground">
                 <MapPinIcon className="w-4 h-4 mr-2" />
-                {user.location || "No location"}
+                {user.location || "Sem localização"}
               </div>
               <div className="flex items-center text-muted-foreground">
                 <LinkIcon className="w-4 h-4 mr-2 shrink-0" />
@@ -69,7 +69,7 @@ export const SiderBar = async () => {
                     {user.website}
                   </a>
                 ) : (
-                  "No website"
+                  "Sem Website"
                 )}
               </div>
             </div>
