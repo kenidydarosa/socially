@@ -8,6 +8,7 @@ import { Card, CardContent } from "./ui/card";
 import Link from "next/link";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { formatDistanceToNow } from "date-fns";
+import { ptBR } from 'date-fns/locale';
 import { DeleteAlertDialog } from "./DeleteAlertDialog";
 import { Button } from "./ui/button";
 import { HeartIcon, LogInIcon, MessageCircleIcon, SendIcon } from "lucide-react";
@@ -95,7 +96,7 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
                   <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                     <Link href={`/profile/${post.author.username}`}>@{post.author.username}</Link>
                     <span>•</span>
-                    <span>{formatDistanceToNow(new Date(post.createdAt))} ago</span>
+                    <span>há {formatDistanceToNow(new Date(post.createdAt), { locale: ptBR })}</span>
                   </div>
                 </div>
                 {/* Check if current user is the post author */}
@@ -172,7 +173,7 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
                         </span>
                         <span className="text-sm text-muted-foreground">·</span>
                         <span className="text-sm text-muted-foreground">
-                          {formatDistanceToNow(new Date(comment.createdAt))} ago
+                          há {formatDistanceToNow(new Date(comment.createdAt), { locale: ptBR })}
                         </span>
                       </div>
                       <p className="text-sm break-words">{comment.content}</p>
@@ -188,7 +189,7 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
                   </Avatar>
                   <div className="flex-1">
                     <Textarea
-                      placeholder="Write a comment..."
+                      placeholder="Escreva um comentário..."
                       value={newComment}
                       onChange={(e) => setNewComment(e.target.value)}
                       className="min-h-[80px] resize-none"
@@ -201,11 +202,11 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
                         disabled={!newComment.trim() || isCommenting}
                       >
                         {isCommenting ? (
-                          "Posting..."
+                          "Publicando..."
                         ) : (
                           <>
                             <SendIcon className="size-4" />
-                            Comment
+                            Comentar
                           </>
                         )}
                       </Button>

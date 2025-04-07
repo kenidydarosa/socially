@@ -6,6 +6,7 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { formatDistanceToNow } from "date-fns";
+import { ptBR } from 'date-fns/locale';
 import { HeartIcon, MessageCircleIcon, UserPlusIcon } from "lucide-react";
 import Link from "next/link";
 
@@ -122,7 +123,7 @@ function NotificationsPage() {
                       )}
 
                     <p className="text-sm text-muted-foreground pl-6">
-                      {formatDistanceToNow(new Date(notification.createdAt), { addSuffix: true })}
+                      há {formatDistanceToNow(new Date(notification.createdAt), { addSuffix: true,  locale: ptBR})}
                     </p>
                   </div>
                 </div>
