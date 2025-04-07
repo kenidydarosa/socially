@@ -24,8 +24,8 @@ interface DeleteAlertDialogProps {
 export function DeleteAlertDialog({
   isDeleting,
   onDelete,
-  title = "Delete Post",
-  description = "This action cannot be undone.",
+  title = "Deletar post?",
+  description = "Essa ação não poderá ser revertida.",
 }: DeleteAlertDialogProps) {
   return (
     <AlertDialog>
@@ -48,13 +48,13 @@ export function DeleteAlertDialog({
           <AlertDialogDescription>{description}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogCancel>Cancelar</AlertDialogCancel>
           <AlertDialogAction
             onClick={onDelete}
             className="bg-red-500 hover:bg-red-600"
             disabled={isDeleting}
           >
-            {isDeleting ? "Deleting..." : "Delete"}
+            {isDeleting ? "Deletando..." : "Deletar"}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

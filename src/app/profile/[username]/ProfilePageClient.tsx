@@ -111,12 +111,12 @@ function ProfilePageClient({
                   <div className="flex justify-between mb-4">
                     <div>
                       <div className="font-semibold">{user._count.following.toLocaleString()}</div>
-                      <div className="text-sm text-muted-foreground">Following</div>
+                      <div className="text-sm text-muted-foreground">Seguindo</div>
                     </div>
                     <Separator orientation="vertical" />
                     <div>
                       <div className="font-semibold">{user._count.followers.toLocaleString()}</div>
-                      <div className="text-sm text-muted-foreground">Followers</div>
+                      <div className="text-sm text-muted-foreground">Seguidores</div>
                     </div>
                     <Separator orientation="vertical" />
                     <div>
@@ -129,12 +129,12 @@ function ProfilePageClient({
                 {/* "FOLLOW & EDIT PROFILE" BUTTONS */}
                 {!currentUser ? (
                   <SignInButton mode="modal">
-                    <Button className="w-full mt-4">Follow</Button>
+                    <Button className="w-full mt-4">Seguir</Button>
                   </SignInButton>
                 ) : isOwnProfile ? (
                   <Button className="w-full mt-4" onClick={() => setShowEditDialog(true)}>
                     <EditIcon className="size-4 mr-2" />
-                    Edit Profile
+                    Editar perfil
                   </Button>
                 ) : (
                   <Button
@@ -143,7 +143,7 @@ function ProfilePageClient({
                     disabled={isUpdatingFollow}
                     variant={isFollowing ? "outline" : "default"}
                   >
-                    {isFollowing ? "Unfollow" : "Follow"}
+                    {isFollowing ? "Deixar de seguir" : "Seguir"}
                   </Button>
                 )}
 
@@ -172,7 +172,7 @@ function ProfilePageClient({
                   )}
                   <div className="flex items-center text-muted-foreground">
                     <CalendarIcon className="size-4 mr-2" />
-                    Joined {formattedDate}
+                    Ingressou {formattedDate}
                   </div>
                 </div>
               </div>
@@ -205,7 +205,7 @@ function ProfilePageClient({
               {posts.length > 0 ? (
                 posts.map((post) => <PostCard key={post.id} post={post} dbUserId={user.id} />)
               ) : (
-                <div className="text-center py-8 text-muted-foreground">No posts yet</div>
+                <div className="text-center py-8 text-muted-foreground">Ainda não há postagens</div>
               )}
             </div>
           </TabsContent>
@@ -215,7 +215,7 @@ function ProfilePageClient({
               {likedPosts.length > 0 ? (
                 likedPosts.map((post) => <PostCard key={post.id} post={post} dbUserId={user.id} />)
               ) : (
-                <div className="text-center py-8 text-muted-foreground">No liked posts to show</div>
+                <div className="text-center py-8 text-muted-foreground">Não há postagens curtidas para mostrar</div>
               )}
             </div>
           </TabsContent>
@@ -224,11 +224,11 @@ function ProfilePageClient({
         <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>
           <DialogContent className="sm:max-w-[500px]">
             <DialogHeader>
-              <DialogTitle>Edit Profile</DialogTitle>
+              <DialogTitle>Editar perfil</DialogTitle>
             </DialogHeader>
             <div className="space-y-4 py-4">
               <div className="space-y-2">
-                <Label>Name</Label>
+                <Label>Nome</Label>
                 <Input
                   name="name"
                   value={editForm.name}
@@ -267,9 +267,9 @@ function ProfilePageClient({
             </div>
             <div className="flex justify-end gap-3">
               <DialogClose asChild>
-                <Button variant="outline">Cancel</Button>
+                <Button variant="outline">Cancelar</Button>
               </DialogClose>
-              <Button onClick={handleEditSubmit}>Save Changes</Button>
+              <Button onClick={handleEditSubmit}>Salvar alterações</Button>
             </div>
           </DialogContent>
         </Dialog>
