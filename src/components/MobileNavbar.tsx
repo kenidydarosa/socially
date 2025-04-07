@@ -33,7 +33,7 @@ function MobileNavbar() {
 						<SheetTitle>Menu</SheetTitle>
 					</SheetHeader>
 					<nav className='flex flex-col space-y-4 mt-6'>
-						<Button variant='ghost' className='flex items-center gap-3 justify-start' asChild>
+						<Button variant='ghost' className='flex items-center gap-3 justify-start' asChild onClick={() => setShowMobileMenu(false)}>
 							<Link href='/'>
 								<HomeIcon className='w-4 h-4' />
 								Home
@@ -42,13 +42,13 @@ function MobileNavbar() {
 
 						{isSignedIn ? (
 							<>
-								<Button variant='ghost' className='flex items-center gap-3 justify-start' asChild>
+								<Button variant='ghost' className='flex items-center gap-3 justify-start' asChild  onClick={() => setShowMobileMenu(false)}>
 									<Link href='/notifications'>
 										<BellIcon className='w-4 h-4' />
 										Notificações
 									</Link>
 								</Button>
-								<Button variant='ghost' className='flex items-center gap-3 justify-start' asChild>
+								<Button variant='ghost' className='flex items-center gap-3 justify-start' asChild onClick={() => setShowMobileMenu(false)}>
 									<Link href={`/profile/${user?.username ?? user?.emailAddresses[0]?.emailAddress.split('@')[0]}`}>
 										<UserIcon className='w-4 h-4' />
 										Perfil
