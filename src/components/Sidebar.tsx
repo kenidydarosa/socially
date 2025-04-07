@@ -17,9 +17,6 @@ export const SiderBar = async () => {
 	
 	const user = await getUserByClerkId(authUser.id);
 	if (!user) return null;
-
-    console.log('user:', {user})
-
 	return (
     <div className="sticky top-20">
       <Card>
